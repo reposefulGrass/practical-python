@@ -8,9 +8,13 @@ payment = 2684.11		# $2684.11
 total_paid = 0.0
 month = 0
 
+start_month = 60
+end_month = 108
+extra_payment = 1000
+
 while principal > 0:
-	if month < 12:
-		actual_payment = payment + 1000
+	if month > start_month and month < end_month: 
+		actual_payment = payment + extra_payment
 	else:
 		actual_payment = payment
 
