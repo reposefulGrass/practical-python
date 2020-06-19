@@ -22,4 +22,7 @@ while principal > 0:
 	total_paid += actual_payment
 	month += 1
 
-print('Total paid', round(total_paid, 3))
+	print(month, round(total_paid, 2), round(principal, 2))
+
+print('Total paid', round(total_paid, 2))
+print('Months', month)
