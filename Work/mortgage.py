@@ -20,8 +20,8 @@ while (principal - payment) > 0:
 	if month > start_month and month < end_month: 
 		principal -= extra_payment
 		total_paid += extra_payment
-	
-	print(month, round(total_paid, 2), round(principal, 2))
+
+	print(f'{month:>4d} {total_paid:>9.2f} {principal:>9.2f}')
 
 print('Total paid', round(total_paid, 2))
 print('Months', month)
