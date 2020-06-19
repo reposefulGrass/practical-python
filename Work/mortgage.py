@@ -12,7 +12,7 @@ start_month = 60
 end_month = 108
 extra_payment = 1000
 
-while principal > 0:
+while (principal - payment) > 0:
 	if month > start_month and month < end_month: 
 		actual_payment = payment + extra_payment
 	else:
