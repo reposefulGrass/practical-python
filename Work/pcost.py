@@ -2,13 +2,20 @@
 #
 # Exercise 1.27
 
-total_cost = 0.0
+def portfolio_cost (filename):
+	'Read the file \'filename\', then calculate the total cost.'
 
-with open('Data/portfolio.csv', 'rt') as f:
-	headers = next(f)
-	
-	for line in f:
-		row = line.split(',')
-		total_cost += (int(row[1]) * float(row[2].strip()))
+	total_cost = 0.0
 
-	print('Total cost', total_cost)
+	with open('Data/portfolio.csv', 'rt') as f:
+		headers = next(f)
+
+		for line in f:
+			row = line.split(',')
+			total_cost += (int(row[1]) * float(row[2].strip()))
+
+	return total_cost
+
+cost = round(portfolio_cost('Data/portfolio.csv'), 2)
+print('Total cost', cost)
+
