@@ -7,6 +7,7 @@
 import csv
 import sys
 
+
 def portfolio_cost (filename):
 	'Read the file \'filename\', then calculate the total cost.'
 
@@ -14,15 +15,17 @@ def portfolio_cost (filename):
 
 	with open(filename, 'rt') as f:
 		rows = csv.reader(f)
-		headers = next(f)
 
+		headers = next(rows)
 		for row in rows:
 			try:
-				total_cost += (int(row[1]) * float(row[2].strip()))
+				cost = int(row[1]) * float(row[2].strip())
+				total_cost += cost
 			except ValueError:
 				print("ParseError:", row)
-				
+
 	return total_cost
+
 
 if len(sys.argv) == 2:
 	filename = sys.argv[1]
