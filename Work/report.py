@@ -45,22 +45,25 @@ def portfolio_cost (filename):
 	return portfolio
 
 
+def make_report (portfolio, prices):
+	report = []
+
+	for row in portfolio:
+		name = row['name']
+		shares = row['shares']
+		price = row['price']
+		new_price = prices[name]
+		change = round(new_price - price, 2)
+
+		report.append((name, shares, new_price, change))
+
+	return report
+
+
 portfolio = portfolio_cost('Data/portfolio.csv')
-
-total = 0.0
-for s in portfolio:
-	total += s['shares'] * s['price']
-
 prices = read_prices('Data/prices.csv')
 
-new_total = 0.0
-for s in portfolio:
-	new_total += s['shares'] * prices[s['name']]
+report = make_report(portfolio, prices)
 
-result = round(new_total - total, 2)
-if (result > 0):
-	print("Gains:", result)
-else:
-	print("Losses:", result)
+print(report)
 
-	
