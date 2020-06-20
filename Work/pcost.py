@@ -7,7 +7,7 @@ def portfolio_cost (filename):
 
 	total_cost = 0.0
 
-	with open('Data/portfolio.csv', 'rt') as f:
+	with open(filename, 'rt') as f:
 		headers = next(f)
 
 		for line in f:
