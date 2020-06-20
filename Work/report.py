@@ -7,6 +7,28 @@ import sys
 import csv
 
 
+def read_prices (filename):
+	'''Parses a .csv file into a dictionary'''
+	prices = []
+
+	with open(filename, 'rt') as f:
+		rows = csv.reader(f)
+
+		headers = next(rows)	
+		for row in rows:
+			try:
+				name = row[0]
+				price = float(row[1])
+				
+				prices.append({
+					name: price
+				})
+			except IndexError:
+				print("ParseError:", row)
+
+	return prices
+
+
 def portfolio_cost (filename):
 	'''Parses a .csv file into a portfolio'''
 	portfolio = []
@@ -40,5 +62,10 @@ total = 0.0
 for s in portfolio:
 	total += s['shares'] * s['price']
 
+
 print(total)
+
+
+prices = read_prices('Data/prices.csv')
+print(prices)
 	
