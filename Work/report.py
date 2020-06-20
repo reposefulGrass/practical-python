@@ -17,10 +17,14 @@ def portfolio_cost (filename):
 		headers = next(rows)
 		for row in rows:
 			name = row[0]
-			num_shares = int(row[1])
+			shares = int(row[1])
 			price = float(row[2])			
 
-			portfolio.append((name, num_shares, price))
+			portfolio.append({
+				'name': name,
+				'shares': shares,
+				'price': price
+			})
 
 	return portfolio
 
@@ -33,8 +37,8 @@ else:
 portfolio = portfolio_cost(filename)
 
 total = 0.0
-for name, shares, price in portfolio:
-	total += shares * price
+for s in portfolio:
+	total += s['shares'] * s['price']
 
 print(total)
 	
