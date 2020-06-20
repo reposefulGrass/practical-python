@@ -9,21 +9,15 @@ import csv
 
 def read_prices (filename):
 	'''Parses a .csv file into a dictionary'''
-	prices = []
+	prices = {}
 
 	with open(filename, 'rt') as f:
 		rows = csv.reader(f)
 
 		for row in rows:
-			try:
+			if len(row) == 2:
 				name = row[0]
 				price = float(row[1])
-				
-				prices.append({
-					name: price
-				})
-			except IndexError:
-				print("ParseError:", row)
 
 	return prices
 
