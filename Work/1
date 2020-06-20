@@ -15,7 +15,7 @@ def portfolio_cost (filename):
 				row = line.split(',')
 				total_cost += (int(row[1]) * float(row[2].strip()))
 			except ValueError:
-				print("ParseError:", line.strip())
+				print("Bad Line:", line)
 
 	return total_cost
 
