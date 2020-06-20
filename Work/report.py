@@ -18,6 +18,7 @@ def read_prices (filename):
 			if len(row) == 2:
 				name = row[0]
 				price = float(row[1])
+				prices[name] = price
 
 	return prices
 
@@ -44,21 +45,22 @@ def portfolio_cost (filename):
 	return portfolio
 
 
-if (sys.argv == 2):
-	filename = argv[1]
-else:
-	filename = 'Data/portfolio.csv'	
-
-portfolio = portfolio_cost(filename)
+portfolio = portfolio_cost('Data/portfolio.csv')
 
 total = 0.0
 for s in portfolio:
 	total += s['shares'] * s['price']
 
-
-print(total)
-
-
 prices = read_prices('Data/prices.csv')
-print(prices)
+
+new_total = 0.0
+for s in portfolio:
+	new_total += s['shares'] * prices[s['name']]
+
+result = round(new_total - total, 2)
+if (result > 0):
+	print("Gains:", result)
+else:
+	print("Losses:", result)
+
 	
