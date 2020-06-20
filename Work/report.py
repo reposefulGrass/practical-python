@@ -1,3 +1,40 @@
+#!/usr/bin/python3.8
 # report.py
 #
 # Exercise 2.4
+
+import sys
+import csv
+
+
+def portfolio_cost (filename):
+	'''Parses a .csv file into a portfolio'''
+	portfolio = []
+
+	with open(filename, 'rt') as f:
+		rows = csv.reader(f)
+
+		headers = next(rows)
+		for row in rows:
+			name = row[0]
+			num_shares = int(row[1])
+			price = float(row[2])			
+
+			portfolio.append((name, num_shares, price))
+
+	return portfolio
+
+
+if (sys.argv == 2):
+	filename = argv[1]
+else:
+	filename = 'Data/portfolio.csv'	
+
+portfolio = portfolio_cost(filename)
+
+total = 0.0
+for name, shares, price in portfolio:
+	total += shares * price
+
+print(total)
+	

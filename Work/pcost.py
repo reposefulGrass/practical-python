@@ -19,8 +19,9 @@ def portfolio_cost (filename):
 		headers = next(rows)
 		for row in rows:
 			try:
-				cost = int(row[1]) * float(row[2].strip())
-				total_cost += cost
+				num_shares = int(row[1])
+				price = float(row[2].strip())
+				total_cost += (num_shares * price)
 			except ValueError:
 				print("ParseError:", row)
 
