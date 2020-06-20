@@ -1,8 +1,11 @@
+#!/usr/bin/python3.8
+
 # pcost.py
 #
 # Exercise 1.27
 
 import csv
+import sys
 
 def portfolio_cost (filename):
 	'Read the file \'filename\', then calculate the total cost.'
@@ -21,6 +24,11 @@ def portfolio_cost (filename):
 				
 	return total_cost
 
-cost = round(portfolio_cost('Data/portfolio.csv'), 2)
+if len(sys.argv) == 2:
+	filename = sys.argv[1]
+else:
+	filename = 'Data/portfolio.csv'
+
+cost = round(portfolio_cost(filename), 2)
 print('Total cost', cost)
 
