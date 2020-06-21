@@ -60,10 +60,27 @@ def make_report (portfolio, prices):
 	return report
 
 
+def print_report_header (headers):
+	for column in headers:
+		print(f'{column:>10s}', end=' ')
+	print("")
+
+	for i in range(0, len(headers)):
+		print("%10s" % ('-' * 10), end=' ')
+	print("")
+
+
+def print_report ():
+	print_report_header(('Name', 'Shares', 'Price', 'Change'))
+	for name, shares, price, change in report:
+		print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
+
+
 portfolio = portfolio_cost('Data/portfolio.csv')
 prices = read_prices('Data/prices.csv')
 
 report = make_report(portfolio, prices)
+print_report()
 
-print(report)
+
 
