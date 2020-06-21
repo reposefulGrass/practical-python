@@ -73,7 +73,8 @@ def print_report_header (headers):
 def print_report ():
 	print_report_header(('Name', 'Shares', 'Price', 'Change'))
 	for name, shares, price, change in report:
-		print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
+		new_price = '$' + str(round(price, 2))
+		print(f'{name:>10s} {shares:>10d} {new_price:>10s} {change:>10.2f}')
 
 
 portfolio = portfolio_cost('Data/portfolio.csv')
