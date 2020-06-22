@@ -18,9 +18,10 @@ def portfolio_cost (filename):
 
 		headers = next(rows)
 		for rowno, row in enumerate(rows):
+			record = dict(zip(headers, row))
 			try:
-				num_shares = int(row[1])
-				price = float(row[2].strip())
+				num_shares = int(record['shares'])
+				price = float(record['price'].strip())
 				total_cost += (num_shares * price)
 			except ValueError:
 				print(f"Row {rowno}: Couldn't convert: {row}")

@@ -32,14 +32,12 @@ def portfolio_cost (filename):
 
 		headers = next(rows)
 		for row in rows:
-			name = row[0]
-			shares = int(row[1])
-			price = float(row[2])			
+			record = dict(zip(headers, row))
 
 			portfolio.append({
-				'name': name,
-				'shares': shares,
-				'price': price
+				'name': record['name'],
+				'shares': int(record['shares']),
+				'price': float(record['price'])
 			})
 
 	return portfolio
