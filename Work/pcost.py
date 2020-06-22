@@ -17,13 +17,13 @@ def portfolio_cost (filename):
 		rows = csv.reader(f)
 
 		headers = next(rows)
-		for row in rows:
+		for rowno, row in enumerate(rows):
 			try:
 				num_shares = int(row[1])
 				price = float(row[2].strip())
 				total_cost += (num_shares * price)
 			except ValueError:
-				print("ParseError:", row)
+				print(f"Row {rowno}: Couldn't convert: {row}")
 
 	return total_cost
 
