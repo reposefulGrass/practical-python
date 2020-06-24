@@ -23,7 +23,7 @@ def read_prices (filename):
 	return prices
 
 
-def portfolio_cost (filename):
+def read_portfolio (filename):
 	'''Parses a .csv file into a portfolio'''
 	portfolio = []
 
@@ -75,7 +75,7 @@ def print_report ():
 		print(f'{name:>10s} {shares:>10d} {new_price:>10s} {change:>10.2f}')
 
 
-portfolio = portfolio_cost('Data/portfolio.csv')
+portfolio = read_portfolio('Data/portfolio.csv')
 prices = read_prices('Data/prices.csv')
 
 report = make_report(portfolio, prices)
