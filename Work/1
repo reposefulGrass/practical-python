@@ -13,22 +13,18 @@ def parse_csv (filename, select):
 		
 		headers = next(rows)
 		records = []
-
-		if select:
-			indices = [headers.index(col) for col in select]	
-			headers = select
-		else:
-			indices = []
-
 		for row in rows:
 			if len(row) == 0:
 				continue
 
-			if select:
-				row = [row[index] for index in indices]
-
 			record = dict(zip(headers, row))
-			records.append(record)
+
+			selected = {}
+			for key, value in record.items():
+				if key in select:
+					selected[key] = value
+
+			records.append(selected)
 
 	return records
 
