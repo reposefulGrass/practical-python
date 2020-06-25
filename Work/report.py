@@ -83,18 +83,21 @@ def print_report_header (headers):
 	print("")
 
 
-def print_report ():
+def print_report (report):
 	print_report_header(('Name', 'Shares', 'Price', 'Change'))
 	for name, shares, price, change in report:
 		new_price = '$' + str(round(price, 2))
 		print(f'{name:>10s} {shares:>10d} {new_price:>10s} {change:>10.2f}')
 
 
-portfolio = read_portfolio('Data/portfolio.csv')
-prices = read_prices('Data/prices.csv')
+def portfolio_report (portfolio_filename, prices_filename):
+	portfolio = read_portfolio(portfolio_filename)
+	prices = read_prices(prices_filename)
 
-report = make_report(portfolio, prices)
-print_report()
+	report = make_report(portfolio, prices)
+	print_report(report)
 
+
+portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
 
 
