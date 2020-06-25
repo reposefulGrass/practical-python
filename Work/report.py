@@ -8,7 +8,11 @@ import csv
 
 
 def read_prices (filename):
-	'''Parses a .csv file into a dictionary'''
+	'''
+	Parses a .csv of the following format in quotes into a dictionary:
+	"name,price"
+	'''
+
 	prices = {}
 
 	with open(filename, 'rt') as f:
@@ -24,7 +28,11 @@ def read_prices (filename):
 
 
 def read_portfolio (filename):
-	'''Parses a .csv file into a portfolio'''
+	'''
+	Parses a .csv file of the following format in strings 
+	into a portfolio: "name, shares, price"
+	'''
+
 	portfolio = []
 
 	with open(filename, 'rt') as f:
@@ -44,6 +52,11 @@ def read_portfolio (filename):
 
 
 def make_report (portfolio, prices):
+	'''
+	Makes a report of the changes between a portfolio of stocks
+	and the current prices of those stocks.
+	'''
+
 	report = []
 
 	for row in portfolio:
@@ -59,6 +72,8 @@ def make_report (portfolio, prices):
 
 
 def print_report_header (headers):
+	'''Prints the header for a report'''
+
 	for column in headers:
 		print(f'{column:>10s}', end=' ')
 	print("")
