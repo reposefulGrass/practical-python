@@ -5,14 +5,16 @@
 import csv
 
 
-def parse_csv (filename, select=[], types=[]):
+def parse_csv (filename, select=[], types=[], has_headers=True):
 	''' Parse a csv file into a list of records '''
+
+	records = []
 
 	with open(filename) as f:
 		rows = csv.reader(f)
 		
-		headers = next(rows)
-		records = []
+		if has_headers:	
+			headers = next(rows)
 
 		if select:
 			indices = [headers.index(col) for col in select]	
@@ -29,7 +31,18 @@ def parse_csv (filename, select=[], types=[]):
 				if types:
 					types = [types[index] for index in indices]
 
-			record = {k: f(v) for k, v, f in zip(headers, row, types)}
+			if has_headers:
+				if types:
+					record = {k: f(v) for k, v, f in zip(headers, row, types)}
+				else:
+					record = {k: v for k, v in zip(headers, row)}
+			else:
+				if types:
+					record = [t(r) for r, t in zip(row, types)]
+					record = tuple(record)
+				else:
+					record = row 
+				
 			records.append(record)
 
 	return records
